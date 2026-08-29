@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="RYTHE ATELIER — contemporary garments shaped by story, function and visual identity.">
+  <meta name="theme-color" content="#35243A">
+  <title>RYTHE ATELIER — Designed With Intent</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="announcement">FREE SHIPPING ON ORDERS OVER ₹5,000 <button id="closeAnnouncement" aria-label="Close">×</button></div>
+
+  <header class="site-header">
+    <a class="logo" href="#/" aria-label="RYTHE ATELIER home">RYTHE <span>ATELIER</span></a>
+    <nav class="desktop-nav" aria-label="Primary">
+      <a href="#/shop">SHOP</a>
+      <a href="#/collections">COLLECTIONS</a>
+      <a href="#/lookbook">LOOKBOOK</a>
+      <a href="#/journal">JOURNAL</a>
+      <a href="#/about">ABOUT</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchBtn" aria-label="Search">⌕</button>
+      <a class="icon-btn" href="#/account" aria-label="Account">◯</a>
+      <button class="icon-btn bag-btn" id="cartBtn" aria-label="Cart">BAG <b id="cartCount">0</b></button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">MENU</button>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <a class="logo footer-logo" href="#/">RYTHE <span>ATELIER</span></a>
+        <p>Garments, graphics and objects shaped by story, function and identity.</p>
+      </div>
+      <div class="footer-links">
+        <div><small>EXPLORE</small><a href="#/shop">Shop</a><a href="#/collections">Collections</a><a href="#/lookbook">Lookbook</a><a href="#/journal">Journal</a></div>
+        <div><small>STUDIO</small><a href="#/about">About</a><a href="#/contact">Contact</a><a href="#/size-guide">Size guide</a><a href="#/faq">FAQ</a></div>
+        <div><small>LEGAL</small><a href="#/shipping">Shipping</a><a href="#/returns">Returns</a><a href="#/privacy">Privacy</a><a href="#/terms">Terms</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 RYTHE ATELIER</span><span>DESIGNED WITH INTENT.</span><span>INSTAGRAM · PINTEREST · YOUTUBE</span></div>
+  </footer>
+
+  <div id="searchOverlay" class="overlay hidden">
+    <div class="overlay-inner">
+      <button class="overlay-close" id="closeSearch">CLOSE ×</button>
+      <label for="globalSearch">SEARCH RYTHE</label>
+      <input id="globalSearch" autocomplete="off" placeholder="Search products, collections, stories…">
+      <div id="searchResults"></div>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="mobile-menu">
+    <button id="closeMenu">CLOSE ×</button>
+    <nav><a href="#/shop">SHOP</a><a href="#/collections">COLLECTIONS</a><a href="#/lookbook">LOOKBOOK</a><a href="#/journal">JOURNAL</a><a href="#/about">ABOUT</a><a href="#/contact">CONTACT</a></nav>
+  </div>
+
+  <aside id="cartDrawer" class="drawer">
+    <div class="drawer-head"><span>YOUR BAG</span><button id="closeCart">CLOSE ×</button></div>
+    <div id="cartItems"></div>
+    <div class="cart-summary">
+      <div><span>SUBTOTAL</span><strong id="cartSubtotal">₹0</strong></div>
+      <p>Shipping calculated at checkout.</p>
+      <a class="btn btn-dark full" href="#/checkout" id="checkoutBtn">CHECKOUT</a>
+    </div>
+  </aside>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
