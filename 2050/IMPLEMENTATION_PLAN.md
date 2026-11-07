@@ -1,7 +1,7 @@
 # RYTHE ATELIER — BEYOND RETAIL 2050
 ## Technical audit and implementation plan
 
-**Status:** Audit and proposed architecture prepared. Awaiting owner review.
+**Status:** Architecture direction approved. Phase 1 scope prepared and awaiting separate approval.
 **Implementation gate:** No application code has been changed for the 2050 experience.
 
 ---
