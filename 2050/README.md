@@ -35,13 +35,14 @@ Open http://localhost:3000.
 ## Quality checks
 
 ```bash
+npm run format
 npm run lint
 npm run typecheck
 npm test
 npm run build
 ```
 
-A GitHub Actions workflow is configured at `.github/workflows/2050-quality.yml` to run the same checks.
+A GitHub Actions workflow is configured at `.github/workflows/2050-quality.yml` to run lint, type-check, tests and production build. Prettier is configured for local formatting.
 
 ## Phase 1 boundaries
 
