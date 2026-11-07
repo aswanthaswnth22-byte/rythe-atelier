@@ -120,6 +120,11 @@ export function EntranceExperience() {
       return;
     }
 
+    if (!audioActive) {
+      startAmbientAudio();
+      return;
+    }
+
     setIsMuted(true);
     try {
       window.localStorage.setItem("rythe-ambient-sound", "off");
