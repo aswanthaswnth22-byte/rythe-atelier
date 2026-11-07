@@ -199,17 +199,15 @@ External requirement: select an AI provider, voice provider (if voice is enabled
 
 ## 7. Commerce and backend decision
 
-### Preferred path: Shopify as commerce source of truth
+### Decision: commerce platform intentionally undecided
 
-Use Shopify products, variants, inventory and hosted checkout through the Storefront API. This avoids rebuilding payment and inventory infrastructure and keeps sensitive payment entry within the commerce provider's checkout.
+The owner has explicitly deferred the commerce decision. Do not assume Shopify or custom Supabase commerce, install provider-specific SDKs, create payment flows, or commit to a provider-specific data model during Phase 1.
 
-Use server-side routes/actions for private tokens and checkout creation. Storefront access tokens should be treated according to their provider-defined scope; Admin API credentials must never enter the browser bundle.
+For Phase 1, define a small provider-neutral commerce contract (product, variant, availability, cart line and checkout handoff interfaces) and use typed fixtures only for local development. Clearly label fixtures as non-production. The contract must be reviewed before any live commerce integration.
 
-Potential Supabase use: concierge preferences, non-critical profile data or editorial/experience state, only if needed. Avoid duplicating product inventory or order state.
+When the commerce decision is made, evaluate Shopify Storefront API against a custom Supabase/Postgres backend. Shopify is likely the lower-operational-burden choice if a Shopify store already exists. A custom backend means RYTHE owns inventory, customer/order state, admin operations, payment integration, tax/shipping rules, webhooks, refunds and operational security.
 
-### Alternative: custom commerce backend
-
-Only choose a custom Supabase/Postgres backend if the owner explicitly wants to own catalogue, variant inventory, customer accounts, order state, admin operations, payment integration, tax/shipping rules, webhooks, refunds and operational security. This is a materially larger build and requires a deliberate payment provider and compliance review.
+Do not duplicate inventory or order state across systems. Select one canonical commerce source of truth before Phase 5.
 
 ### Payment integrity
 - No fake payment success.
@@ -358,27 +356,85 @@ Each phase has a review gate. The next phase begins only after the previous phas
 
 ---
 
-## 12. Owner decisions required before implementation
+## 12. Owner decisions and approved direction
 
-1. **Repository strategy:** continue inside the current `rythe-atelier` repository (recommended for reuse) or create a separate repository manually. The available GitHub connection does not expose a repository-creation action.
-2. **Commerce source of truth:** Shopify (recommended for faster, safer commerce integration) or custom Supabase-backed commerce.
-3. **Visual environment source:** commissioned/generated equirectangular panoramas for the first release, or Blender-built real-time architectural scenes from the start.
-4. **Product assets:** supply three approved prototype products with price, variants, imagery and front/back views; decide which, if any, receive 3D garment models.
-5. **AVA scope:** guided non-AI prototype first (recommended) or conversational AI/voice in the first release.
-6. **Sound:** commissioned/original ambient sound assets, or silent by default until assets are available.
+The owner has confirmed the following project direction:
 
-### Recommended defaults
-- Keep development inside `rythe-atelier`.
-- Use Shopify as commerce source of truth if a Shopify store already exists.
+| Decision | Approved direction | Implementation consequence |
+|---|---|---|
+| Commerce | **Undecided** | Keep commerce provider-neutral in Phase 1. No Shopify/Supabase commerce integration or payment implementation until selected. |
+| Environment | **Panorama-first** | Use equirectangular 360-degree environments for the initial showroom prototype, with touch/mouse camera control and hotspots. |
+| AVA | **Guided concierge** | Build a deterministic guided interface with curated prompts, navigation help and product links. No generative AI or voice in the initial prototype. |
+
+Still required before the relevant later phases:
+
+1. **Repository strategy:** continue inside the current `rythe-atelier` repository (recommended for reuse) or create a separate repository manually. The available GitHub connection does not expose a repository-creation action; the planning directory currently lives inside `rythe-atelier`.
+2. **Product assets:** approve three prototype products with canonical identifiers, price, variants, stock source, product copy and front/back imagery.
+3. **Sound:** approve commissioned/original ambient audio or keep the experience silent. Audio remains off by default and opt-in if added.
+4. **Commerce provider:** choose Shopify or custom commerce before the live integration phase.
+5. **AVA assets:** approve a consistent character design and idle/speaking visual assets before character animation work.
+
+### Updated working defaults
+- Continue planning in `rythe-atelier/2050`.
 - Use panorama-first rendering for the first prototype.
-- Use three products with image-based front/back inspection first.
-- Ship AVA as a guided concierge first; add AI voice after privacy and provider decisions.
-- Keep ambient audio opt-in and off by default.
+- Use three products with image-based front/back inspection before introducing 3D garment models.
+- Ship AVA as a guided concierge; defer AI and voice.
+- Keep audio off by default and make it opt-in.
+- Keep the commerce layer provider-neutral until a deliberate decision is made.
 
 ---
 
-## 13. Approval gate
+## 13. Phase 1 — detailed scope for approval
 
-**No implementation has started.**
+**Phase name:** Foundations and design system  
+**Status:** Prepared for approval; not started.
 
-Review this plan and confirm approval, including any changes to the six owner decisions above. Once approved, implementation should begin with Phase 1 only, followed by a tested review before Phase 2.
+### Objective
+Create the technical and visual foundation for the immersive showroom without committing to the undecided commerce provider or beginning the entrance/showroom feature implementation.
+
+### In scope
+1. Confirm the Next.js App Router, React and TypeScript project baseline and supported Node/package-manager versions.
+2. Establish a clean application structure and strict TypeScript conventions.
+3. Define brand design tokens for Deep Plum `#35243A`, Bone `#F5F0EA`, Obsidian `#101014`, Graphite `#29292F`, Chrome `#B8BAC1` and restrained Violet `#9B72D5`.
+4. Define typography, spacing, layout, responsive breakpoints, focus states and reusable accessible UI primitives.
+5. Define typed contracts for showroom environments, hotspots, product display metadata and provider-neutral commerce concepts.
+6. Create a lightweight application shell and a WebGL capability/fallback strategy, without implementing the cinematic entrance or panorama viewer yet.
+7. Configure formatting, linting, type-checking and a minimal test/build workflow.
+8. Document environment variables and secret-handling conventions using example placeholders only; do not add real credentials.
+
+### Explicitly out of scope
+- Cinematic entrance animation and door transition (Phase 2).
+- Panorama renderer, camera controls, hotspot navigation and room transitions (Phase 3).
+- Product display/inspection UI and live product data (Phase 4 and later).
+- Shopify, Supabase commerce, payments, inventory, authentication and order processing.
+- AI, voice, speech recognition or animated AVA character implementation.
+- Production asset creation or purchase.
+
+### Phase 1 deliverables
+- Bootable Next.js + TypeScript application foundation.
+- Brand token and responsive UI foundation.
+- Typed domain contracts for showroom and commerce boundaries.
+- WebGL fallback design/placeholder path.
+- Lint, type-check, test and production-build commands.
+- Updated developer setup and architecture notes.
+
+### Verification / exit criteria
+- Clean dependency install and successful production build.
+- TypeScript check and lint pass.
+- Minimal automated tests pass for core data contracts and fallback selection.
+- Responsive shell checked at mobile and desktop widths.
+- Keyboard focus and reduced-motion baseline verified.
+- No secrets committed; no fake checkout or order-success behaviour.
+- Existing storefront remains recoverable and is not deleted before migration/reuse decisions are made.
+- Phase 1 changes reviewed before Phase 2 is authorized.
+
+### Phase 1 approval requested
+Approve Phase 1 exactly as scoped above, or request changes. Once approved, implement Phase 1 only. Do not automatically proceed to Phase 2 after Phase 1 completion.
+
+---
+
+## 14. Approval gate
+
+**Overall architecture direction is approved. Phase 1 implementation has not started.**
+
+The next authorization required is explicit approval of the Phase 1 scope in Section 13. After Phase 1 is implemented and verified, present its results for review before any Phase 2 work.
