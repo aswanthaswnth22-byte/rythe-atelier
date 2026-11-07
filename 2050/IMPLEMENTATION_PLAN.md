@@ -1,8 +1,8 @@
 # RYTHE ATELIER — BEYOND RETAIL 2050
 ## Technical audit and implementation plan
 
-**Status:** Architecture direction approved. Phase 1 scope prepared and awaiting separate approval.
-**Implementation gate:** No application code has been changed for the 2050 experience.
+**Status:** Phase 1 foundation implemented on `2050/phase-1-foundation`; automated verification is pending CI execution and owner review.
+**Implementation gate:** Phase 1 only. Phase 2 remains blocked until separate owner review and approval.
 
 ---
 
@@ -387,7 +387,7 @@ Still required before the relevant later phases:
 ## 13. Phase 1 — detailed scope for approval
 
 **Phase name:** Foundations and design system  
-**Status:** Prepared for approval; not started.
+**Status:** Approved by the owner and implemented on branch `2050/phase-1-foundation`.
 
 ### Objective
 Create the technical and visual foundation for the immersive showroom without committing to the undecided commerce provider or beginning the entrance/showroom feature implementation.
@@ -428,13 +428,13 @@ Create the technical and visual foundation for the immersive showroom without co
 - Existing storefront remains recoverable and is not deleted before migration/reuse decisions are made.
 - Phase 1 changes reviewed before Phase 2 is authorized.
 
-### Phase 1 approval requested
-Approve Phase 1 exactly as scoped above, or request changes. Once approved, implement Phase 1 only. Do not automatically proceed to Phase 2 after Phase 1 completion.
+### Phase 1 approval and implementation record
+Owner approval received on 2026-11-07. Phase 1 implementation is isolated on branch `2050/phase-1-foundation`. The foundation files and CI workflow have been committed; local execution of install, lint, type-check, tests and production build is not available in this GitHub-only execution path and must be confirmed by CI before Phase 1 is considered verified. Do not automatically proceed to Phase 2 after Phase 1 completion.
 
 ---
 
 ## 14. Approval gate
 
-**Overall architecture direction is approved. Phase 1 implementation has not started.**
+**Overall architecture direction and Phase 1 scope are approved. Phase 1 implementation is committed on `2050/phase-1-foundation`; verification and owner review remain outstanding.**
 
-The next authorization required is explicit approval of the Phase 1 scope in Section 13. After Phase 1 is implemented and verified, present its results for review before any Phase 2 work.
+No Phase 2 work is authorized. After Phase 1 checks pass, present the implementation and verification evidence for owner review. Wait for explicit approval before beginning Phase 2.

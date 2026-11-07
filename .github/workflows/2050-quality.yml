@@ -1,0 +1,29 @@
+name: RYTHE 2050 Phase 1 quality
+
+on:
+  push:
+    branches: ["2050/phase-1-foundation"]
+    paths:
+      - "2050/**"
+      - ".github/workflows/2050-quality.yml"
+  pull_request:
+    paths:
+      - "2050/**"
+      - ".github/workflows/2050-quality.yml"
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 2050
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
