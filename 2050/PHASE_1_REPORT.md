@@ -16,12 +16,13 @@
   - Graphite `#29292F`
   - Chrome `#B8BAC1`
   - Violet `#9B72D5`
-- Responsive foundation shell with desktop/mobile layout, visible keyboard focus, semantic structure and reduced-motion CSS baseline.
+- Responsive foundation shell with desktop/mobile layout, visible keyboard focus, semantic structure, reduced-motion CSS baseline and a reusable accessible button primitive.
 - WebGL capability check with an accessible fallback state. This is a capability check only; it does not load or render a 3D scene.
 - Typed showroom contracts for panorama sources, environments, hotspots and product display metadata.
 - Provider-neutral commerce contracts. No provider SDK or live commerce logic is included.
 - Three typed planning environment fixtures: The Threshold, The Gallery and The Archive. Panorama sources are intentionally blank placeholders.
-- Vitest configuration and two fallback-selection unit tests.
+- Prettier configuration and formatting scripts.
+- Vitest configuration and five unit tests covering capability fallback and the three typed showroom fixtures.
 - GitHub Actions quality workflow for lint, type-check, tests and production build.
 - Developer setup and environment-variable guidance. No real credentials or secrets were added.
 
@@ -40,13 +41,14 @@ The repository now contains automated commands:
 
 ```bash
 npm install
+npm run format
 npm run lint
 npm run typecheck
 npm test
 npm run build
 ```
 
-A GitHub Actions workflow has been added at `.github/workflows/2050-quality.yml`. The code was committed through the GitHub integration; this execution environment did not run a local Node.js install/build. Treat Phase 1 as **implemented, pending automated CI verification and owner review**, not as verified or production-ready.
+A GitHub Actions workflow has been added at `.github/workflows/2050-quality.yml` to run lint, type-check, tests and production build. Prettier is configured with `npm run format` and `npm run format:check`; formatting is an opt-in local command and is not currently a CI gate. The code was committed through the GitHub integration; this execution environment did not run a local Node.js install/build. Treat Phase 1 as **implemented, pending automated CI verification and owner review**, not as verified or production-ready.
 
 ## Preservation and boundaries
 
