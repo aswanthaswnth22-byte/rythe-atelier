@@ -1,8 +1,8 @@
-name: RYTHE 2050 Phase 1 quality
+name: RYTHE 2050 quality
 
 on:
   push:
-    branches: ["2050/phase-1-foundation"]
+    branches: ["2050/phase-1-foundation", "2050/phase-2-cinematic-entrance"]
     paths:
       - "2050/**"
       - ".github/workflows/2050-quality.yml"
