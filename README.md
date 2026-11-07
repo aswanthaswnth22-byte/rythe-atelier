@@ -1,31 +1,13 @@
-# RYTHE ATELIER — Front-End Build
+# RYTHE ATELIER — Showcase
 
-Open `index.html` in a browser to run the site locally.
+Responsive editorial catalogue. This is a brand showcase, not a commerce backend: no checkout, payment capture, stock claims or order confirmation.
 
-Included:
-- Editorial responsive homepage
-- Shop + category filters
-- Collection page
-- Product pages
-- LocalStorage cart
-- Size selection
-- Search overlay
-- Wishlist-ready architecture (backend not connected)
-- Lookbook
-- Journal
-- Checkout flow (demo)
-- Order confirmation
-- Mobile navigation
-- Responsive design
-- RYTHE palette: #35243A / #F5F0EA
+## Before publishing
+- Confirm all product names, prices (if displayed), material claims, silhouettes and collection details.
+- Replace current lightweight placeholder assets with final production photography.
+- Add verified studio email and social links.
+- Register/connect the custom domain with your static host and configure DNS and HTTPS.
+- Add accurate legal and privacy information where applicable.
+- Test all routes and images on mobile and desktop.
 
-Production integrations still required before live commerce:
-- Supabase/PostgreSQL
-- authentication
-- real inventory
-- Stripe/payment gateway
-- transactional email
-- CMS/admin
-- real product/campaign photography
-- final legal policies
-- analytics
+Static hosting compatible: GitHub Pages, Vercel, Netlify and similar providers. Domain registration, DNS and deployment settings are external setup steps.
