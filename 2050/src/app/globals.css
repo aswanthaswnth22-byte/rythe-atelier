@@ -178,3 +178,271 @@ h1 em { color: var(--ra-chrome); font-weight: 400; }
 @media (prefers-reduced-motion: reduce) {
   .ui-button { transition: none; }
 }
+
+/* Phase 2 — cinematic entrance */
+.entrance-shell {
+  --entrance-gutter: clamp(1.25rem, 5.2vw, 5.5rem);
+  position: relative;
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  background: #101014;
+  color: #F5F0EA;
+}
+.entrance-header, .entrance-footer {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  min-height: 78px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-inline: var(--entrance-gutter);
+}
+.entrance-header { border-bottom: 1px solid rgba(245,240,234,.13); }
+.entrance-wordmark {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .2em;
+}
+.entrance-wordmark span { font-weight: 400; }
+.entrance-edition, .entrance-kicker, .entrance-note,
+.entrance-footer, .entrance-side-index, .sound-toggle, .sound-unavailable {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: .16em;
+}
+.entrance-edition, .entrance-footer { color: #929099; }
+.entrance-stage {
+  position: relative;
+  display: grid;
+  flex: 1;
+  min-height: 690px;
+  place-items: center;
+  overflow: hidden;
+  padding: 5rem var(--entrance-gutter) 6rem;
+  background:
+    radial-gradient(ellipse at 50% 47%, rgba(53,36,58,.4), transparent 44%),
+    linear-gradient(180deg, #101014 0%, #141217 55%, #101014 100%);
+}
+.entrance-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .22;
+  background-image:
+    linear-gradient(rgba(184,186,193,.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,186,193,.09) 1px, transparent 1px);
+  background-size: 74px 74px;
+  mask-image: linear-gradient(transparent, black 22%, black 76%, transparent);
+}
+.entrance-halo {
+  position: absolute;
+  width: min(74vw, 900px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(184,186,193,.11);
+  border-radius: 50%;
+  box-shadow: 0 0 120px rgba(53,36,58,.12), inset 0 0 100px rgba(53,36,58,.08);
+}
+.entrance-architecture {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.door-frame {
+  position: relative;
+  width: min(35vw, 410px);
+  min-width: 270px;
+  height: min(62vh, 570px);
+  min-height: 390px;
+  perspective: 1200px;
+  border: 1px solid rgba(184,186,193,.28);
+  background: linear-gradient(180deg, rgba(41,41,47,.22), rgba(16,16,20,.3));
+  box-shadow: 0 30px 120px rgba(0,0,0,.38);
+}
+.door-frame::before {
+  position: absolute;
+  inset: 13px;
+  border: 1px solid rgba(184,186,193,.12);
+  content: "";
+}
+.door-leaf {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background:
+    linear-gradient(135deg, rgba(184,186,193,.12), transparent 28%),
+    linear-gradient(90deg, #27252b, #18171c 68%, #25232a);
+  transition: transform 1.65s cubic-bezier(.76,0,.18,1);
+  backface-visibility: hidden;
+}
+.door-leaf-left {
+  left: 0;
+  transform-origin: left center;
+  border-right: 1px solid rgba(184,186,193,.24);
+}
+.door-leaf-right {
+  right: 0;
+  transform-origin: right center;
+  border-left: 1px solid rgba(184,186,193,.24);
+}
+.door-light {
+  position: absolute;
+  inset: 9% 15%;
+  background: radial-gradient(ellipse, rgba(155,114,213,.22), rgba(53,36,58,.08) 42%, transparent 72%);
+  filter: blur(22px);
+}
+.door-threshold {
+  position: absolute;
+  right: -16%;
+  bottom: -12px;
+  left: -16%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184,186,193,.45), transparent);
+}
+.entrance-copy {
+  position: relative;
+  z-index: 3;
+  width: min(760px, 100%);
+  margin-top: 3rem;
+  text-align: center;
+  animation: entrance-reveal 1.15s .12s both cubic-bezier(.2,.7,.2,1);
+}
+.entrance-kicker { margin: 0 0 1.8rem; color: #B8BAC1; }
+.entrance-copy h1, .threshold-arrival h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(4rem, 9.2vw, 8.5rem);
+  font-weight: 400;
+  letter-spacing: -.075em;
+  line-height: .82;
+}
+.entrance-copy h1 em, .threshold-arrival h1 em {
+  color: #B8BAC1;
+  font-weight: 400;
+}
+.entrance-description {
+  max-width: 440px;
+  margin: 2rem auto 1.8rem;
+  color: #c2bec4;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.enter-button {
+  min-width: 220px;
+  min-height: 54px;
+  gap: 2.5rem;
+  border: 1px solid rgba(245,240,234,.7);
+  background: #F5F0EA;
+  color: #101014;
+  transition: background .25s ease, color .25s ease, border-color .25s ease;
+}
+.enter-button:hover { border-color: #B8BAC1; background: transparent; color: #F5F0EA; }
+.entrance-note { margin: 1.4rem 0 0; color: #929099; }
+.entrance-side-index {
+  position: absolute;
+  z-index: 3;
+  right: var(--entrance-gutter);
+  bottom: 2rem;
+  left: var(--entrance-gutter);
+  display: flex;
+  justify-content: space-between;
+  color: #77747d;
+}
+.entrance-footer {
+  min-height: 68px;
+  border-top: 1px solid rgba(245,240,234,.13);
+}
+.entrance-footer > span:nth-child(2) { text-align: center; }
+.sound-toggle {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 9px;
+  border: 0;
+  background: transparent;
+  color: #B8BAC1;
+  cursor: pointer;
+}
+.sound-toggle:hover { color: #F5F0EA; }
+.sound-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #77747d;
+}
+.sound-indicator.is-playing {
+  background: #9B72D5;
+  box-shadow: 0 0 12px rgba(155,114,213,.8);
+}
+.sound-unavailable { color: #c2bec4; }
+.entrance-door-overlay {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: #101014;
+  pointer-events: none;
+  transition: transform 1.65s cubic-bezier(.76,0,.18,1);
+}
+.door-overlay-left { left: 0; transform: translateX(-101%); }
+.door-overlay-right { right: 0; transform: translateX(101%); }
+.is-entering .door-leaf-left { transform: rotateY(-105deg); }
+.is-entering .door-leaf-right { transform: rotateY(105deg); }
+.is-entering .entrance-copy { opacity: 0; transform: translateY(-12px); transition: opacity .45s ease, transform .45s ease; }
+.has-entered .entrance-stage { display: none; }
+.threshold-arrival {
+  display: flex;
+  flex: 1;
+  min-height: 570px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem var(--entrance-gutter);
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 46%, rgba(53,36,58,.42), transparent 48%),
+    #101014;
+  animation: arrival-reveal 1s both;
+}
+.threshold-arrival .entrance-description { margin-bottom: 2.5rem; }
+.arrival-rule { width: min(220px, 40vw); height: 1px; background: linear-gradient(90deg, transparent, #B8BAC1, transparent); }
+.threshold-arrival .entrance-note { max-width: 440px; line-height: 1.8; }
+.is-entering .door-leaf-left { transform: translateX(-2%) rotateY(-105deg); }
+.is-entering .door-leaf-right { transform: translateX(2%) rotateY(105deg); }
+@keyframes entrance-reveal {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes arrival-reveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 760px) {
+  .entrance-header { min-height: 68px; }
+  .entrance-stage { min-height: 650px; padding-block: 4rem 5rem; }
+  .door-frame { width: min(66vw, 330px); height: 470px; min-height: 0; }
+  .entrance-copy { margin-top: 0; }
+  .entrance-copy h1, .threshold-arrival h1 { font-size: clamp(3.8rem, 15vw, 6rem); }
+  .entrance-description { max-width: 340px; font-size: 13px; }
+  .entrance-footer { min-height: 82px; flex-wrap: wrap; justify-content: space-between; padding-block: .7rem; }
+  .entrance-footer > span:nth-child(2) { display: none; }
+  .threshold-arrival { min-height: 600px; }
+}
+@media (max-width: 390px) {
+  .entrance-edition { font-size: 8px; }
+  .entrance-copy h1, .threshold-arrival h1 { font-size: 3.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entrance-copy, .threshold-arrival { animation: none; }
+  .door-leaf, .entrance-door-overlay, .enter-button { transition: none !important; }
+  .is-entering .door-leaf-left { transform: none; }
+  .is-entering .door-leaf-right { transform: none; }
+  .is-entering .entrance-copy { opacity: 0; }
+}
