@@ -1,8 +1,8 @@
 # RYTHE ATELIER — BEYOND RETAIL 2050
 ## Technical audit and implementation plan
 
-**Status:** Phase 1 foundation implemented on `2050/phase-1-foundation`; automated verification is pending CI execution and owner review.
-**Implementation gate:** Phase 1 only. Phase 2 remains blocked until separate owner review and approval.
+**Status:** Phase 1 foundation implemented on `2050/phase-1-foundation`; Phase 2 implementation is underway on `2050/phase-2-cinematic-entrance` following explicit owner authorization.
+**Implementation gate:** Phase 2 only. Phase 3 remains blocked until Phase 2 review and separate owner approval.
 
 ---
 
@@ -282,6 +282,8 @@ Each phase has a review gate. The next phase begins only after the previous phas
 
 **Verification:** first-load, repeat visit, slow connection, touch, keyboard and reduced-motion tests.
 
+**Current implementation record:** Phase 2 is authorized by the owner's explicit instruction on 2026-11-07. Work is isolated on `2050/phase-2-cinematic-entrance`, based on the Phase 1 foundation branch. The current implementation includes the RYTHE entrance screen, interactive door-opening transition, post-entry threshold state, opt-in generated ambient tone, persistent sound preference and reduced-motion bypass. It does not implement the panorama renderer or showroom navigation; those remain Phase 3. Automated verification and owner review are pending.
+
 ### Phase 3 — showroom navigation
 - Build panorama renderer and camera controls.
 - Add three locations and hotspot routing.
@@ -429,12 +431,50 @@ Create the technical and visual foundation for the immersive showroom without co
 - Phase 1 changes reviewed before Phase 2 is authorized.
 
 ### Phase 1 approval and implementation record
-Owner approval received on 2026-11-07. Phase 1 implementation is isolated on branch `2050/phase-1-foundation`. The foundation files and CI workflow have been committed; local execution of install, lint, type-check, tests and production build is not available in this GitHub-only execution path and must be confirmed by CI before Phase 1 is considered verified. Do not automatically proceed to Phase 2 after Phase 1 completion.
+Owner approval received on 2026-11-07. Phase 1 implementation is isolated on branch `2050/phase-1-foundation`. The foundation files and CI workflow have been committed; local execution of install, lint, type-check, tests and production build was not available in the initial GitHub-only implementation pass. The owner subsequently accepted Phase 1 and explicitly authorized Phase 2 on 2026-11-07. Phase 1's CI verification remains a separate outstanding check.
 
 ---
 
 ## 14. Approval gate
 
-**Overall architecture direction and Phase 1 scope are approved. Phase 1 implementation is committed on `2050/phase-1-foundation`; verification and owner review remain outstanding.**
+**Architecture direction and Phase 1 scope are approved. Phase 2 is explicitly authorized and is being implemented on `2050/phase-2-cinematic-entrance`.**
 
-No Phase 2 work is authorized. After Phase 1 checks pass, present the implementation and verification evidence for owner review. Wait for explicit approval before beginning Phase 2.
+Phase 2 must be verified and presented for owner review before any Phase 3 work. Do not begin panorama rendering, camera controls, hotspots or room navigation without separate explicit approval.
+
+## 15. Phase 2 — detailed implementation record
+
+**Phase name:** Cinematic entrance  
+**Status:** Authorized by the owner on 2026-11-07; implementation in progress on `2050/phase-2-cinematic-entrance`.
+
+### Objective
+Create a distinctive, accessible first-contact experience that establishes the RYTHE digital atelier before any 360-degree showroom work begins.
+
+### In scope
+1. Full-screen RYTHE identity and editorial entrance composition.
+2. Interactive entry action.
+3. Architectural split-door opening transition.
+4. A post-entry threshold state that clearly communicates the showroom is a later phase.
+5. Original, synthesized low-level ambient tone, opt-in only and off by default.
+6. Persistent sound preference and explicit sound activation/mute control.
+7. Reduced-motion bypass and no-audio experience path.
+8. Responsive layout and semantic keyboard-operable entry/sound controls.
+9. Unit tests for reduced-motion selection and sound preference parsing.
+
+### Explicitly out of scope
+- Panorama renderer, 360-degree camera, hotspots, destinations or room transitions.
+- Product display, product data, cart or checkout.
+- AVA, AI, voice or character animation.
+- External audio assets, analytics or user tracking.
+
+### Phase 2 review checklist
+- Initial entrance renders without a blank screen.
+- Entry control works by pointer, touch and keyboard.
+- Door transition completes and reaches the threshold state.
+- Reduced-motion preference skips cinematic movement.
+- Audio never starts without a user gesture; preference persists where browser storage is available.
+- Mute control works and the experience remains complete with sound disabled.
+- Mobile and desktop layouts remain usable.
+- Lint, type-check, tests and production build pass in CI.
+
+### Approval boundary
+After verification, present the Phase 2 result for review. Phase 3 is not authorized until the owner explicitly approves it.
