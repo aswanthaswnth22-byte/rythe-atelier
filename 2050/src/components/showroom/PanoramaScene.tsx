@@ -79,6 +79,7 @@ export function PanoramaScene({
 }: PanoramaSceneProps) {
   const mountRef = useRef<HTMLDivElement>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+  const renderRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -86,13 +87,17 @@ export function PanoramaScene({
 
     let renderer: THREE.WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+      renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false });
     } catch {
       onError();
       return;
     }
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.7));
+    const pixelRatio = Math.min(
+      window.devicePixelRatio || 1,
+      window.innerWidth < 768 ? 1.5 : 2
+    );
+    renderer.setPixelRatio(pixelRatio);
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.domElement.setAttribute("aria-hidden", "true");
@@ -100,19 +105,32 @@ export function PanoramaScene({
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(76, mount.clientWidth / Math.max(mount.clientHeight, 1), 0.1, 1100);
+    const camera = new THREE.PerspectiveCamera(
+      76,
+      mount.clientWidth / Math.max(mount.clientHeight, 1),
+      0.1,
+      1100
+    );
     camera.position.set(0, 0, 0);
     camera.rotation.order = "YXZ";
     cameraRef.current = camera;
 
     const placeholder = new THREE.CanvasTexture(createPlaceholderPanorama(sceneId));
     placeholder.colorSpace = THREE.SRGBColorSpace;
-    const material = new THREE.MeshBasicMaterial({ map: placeholder, side: THREE.BackSide });
+    const material = new THREE.MeshBasicMaterial({
+      map: placeholder,
+      side: THREE.BackSide
+    });
     const sphere = new THREE.Mesh(new THREE.SphereGeometry(500, 64, 40), material);
     scene.add(sphere);
 
-    let loadedTexture: THREE.Texture | null = null;
     let disposed = false;
+    const render = () => {
+      if (!disposed) renderer.render(scene, camera);
+    };
+    renderRef.current = render;
+    render();
+
     if (panoramaSrc) {
       new THREE.TextureLoader().load(
         panoramaSrc,
@@ -122,47 +140,43 @@ export function PanoramaScene({
             return;
           }
           texture.colorSpace = THREE.SRGBColorSpace;
-          loadedTexture = texture;
           material.map = texture;
           material.needsUpdate = true;
+          render();
+          onReady();
         },
         undefined,
         () => {
-          // Keep the generated placeholder visible if a future panorama asset fails.
+          // Keep the generated placeholder visible if the panorama asset fails.
+          render();
+          onReady();
         }
       );
+    } else {
+      onReady();
     }
-
-    let frame = 0;
-    const render = () => {
-      if (disposed) return;
-      renderer.render(scene, camera);
-      frame = window.requestAnimationFrame(render);
-    };
-    render();
-    onReady();
 
     const resize = () => {
       if (disposed) return;
       camera.aspect = mount.clientWidth / Math.max(mount.clientHeight, 1);
       camera.updateProjectionMatrix();
       renderer.setSize(mount.clientWidth, mount.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.7));
+      render();
     };
     const observer = new ResizeObserver(resize);
     observer.observe(mount);
 
     return () => {
       disposed = true;
-      window.cancelAnimationFrame(frame);
       observer.disconnect();
       sphere.geometry.dispose();
       material.dispose();
       placeholder.dispose();
-      loadedTexture?.dispose();
+      if (material.map && material.map !== placeholder) material.map.dispose();
       renderer.dispose();
       renderer.domElement.remove();
       cameraRef.current = null;
+      renderRef.current = null;
     };
   }, [sceneId, panoramaSrc, onReady, onError]);
 
@@ -172,6 +186,7 @@ export function PanoramaScene({
     camera.rotation.order = "YXZ";
     camera.rotation.y = cameraYaw;
     camera.rotation.x = cameraPitch;
+    renderRef.current?.();
   }, [cameraYaw, cameraPitch]);
 
   return (
