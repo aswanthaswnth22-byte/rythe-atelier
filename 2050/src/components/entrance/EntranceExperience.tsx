@@ -191,17 +191,7 @@ export function EntranceExperience() {
         </section>
       ) : (
         <ShowroomExperience />
-        {/* Phase 3 replaces the temporary Phase 2 threshold with the navigable showroom. */}
-        <section className="threshold-arrival showroom-phase-transition" aria-labelledby="arrival-title">
-          <p className="entrance-kicker">THRESHOLD / 001</p>
-          <h1 id="arrival-title">THE SPACE<br /><em>IS YOURS.</em></h1>
-          <p className="entrance-description">
-            You have entered the RYTHE digital atelier. The showroom is being
-            prepared for its next chapter.
-          </p>
-          <div className="arrival-rule" />
-          <p className="entrance-note">THE THRESHOLD IS OPEN — ENTER THE SPATIAL ATELIER.</p>
-        </section>
+
       )}
 
       <footer className="entrance-footer">
