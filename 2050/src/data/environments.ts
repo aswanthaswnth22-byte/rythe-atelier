@@ -9,7 +9,7 @@ export const showroomEnvironments = [
     id: "threshold",
     name: "The Threshold",
     description: "A quiet arrival point. Choose a direction and enter the atelier.",
-    panorama: { src: "", alt: "Temporary generated panorama placeholder for The Threshold." },
+    panorama: { src: "/panoramas/threshold.webp", alt: "360-degree panorama of The Threshold, with aubergine walls, dark marble flooring and sculptural entrance." },
     hotspots: [
       { id: "to-gallery", label: "Enter The Gallery", yaw: -0.52, pitch: 0.08, action: { type: "navigate", destinationId: "gallery" } },
       { id: "to-archive", label: "Explore The Archive", yaw: 0.72, pitch: -0.04, action: { type: "navigate", destinationId: "archive" } }
@@ -19,7 +19,7 @@ export const showroomEnvironments = [
     id: "gallery",
     name: "The Gallery",
     description: "The central collection space. Move through the room and discover its architecture.",
-    panorama: { src: "", alt: "Temporary generated panorama placeholder for The Gallery." },
+    panorama: { src: "/panoramas/gallery.webp", alt: "360-degree panorama of The Gallery, with sculptural metallic display platforms and dark aubergine architecture." },
     hotspots: [
       { id: "gallery-threshold", label: "Return to The Threshold", yaw: 2.48, pitch: 0.02, action: { type: "navigate", destinationId: "threshold" } },
       { id: "gallery-archive", label: "Continue to The Archive", yaw: -0.72, pitch: -0.08, action: { type: "navigate", destinationId: "archive" } }
@@ -29,7 +29,7 @@ export const showroomEnvironments = [
     id: "archive",
     name: "The Archive",
     description: "A slower space for material studies, collection notes and the stories behind each object.",
-    panorama: { src: "", alt: "Temporary generated panorama placeholder for The Archive." },
+    panorama: { src: "/panoramas/archive.webp", alt: "360-degree panorama of The Archive, with illuminated garment display niches and aubergine walls." },
     hotspots: [
       { id: "archive-threshold", label: "Return to The Threshold", yaw: -2.45, pitch: 0.03, action: { type: "navigate", destinationId: "threshold" } },
       { id: "archive-gallery", label: "Enter The Gallery", yaw: 0.64, pitch: 0.02, action: { type: "navigate", destinationId: "gallery" } }
