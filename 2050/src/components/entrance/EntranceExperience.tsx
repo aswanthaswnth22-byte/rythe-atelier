@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ShowroomExperience } from "@/components/showroom/ShowroomExperience";
 import {
@@ -149,9 +150,9 @@ export function EntranceExperience() {
   return (
     <main className={`entrance-shell${isEntering ? " is-entering" : ""}${hasEntered ? " has-entered" : ""}`}>
       <header className="entrance-header">
-        <a className="entrance-wordmark" href="/" aria-label="RYTHE ATELIER">
+        <Link className="entrance-wordmark" href="/" aria-label="RYTHE ATELIER">
           RYTHE <span>ATELIER</span>
-        </a>
+        </Link>
         <span className="entrance-edition">DIGITAL ATELIER / 2050</span>
       </header>
 
