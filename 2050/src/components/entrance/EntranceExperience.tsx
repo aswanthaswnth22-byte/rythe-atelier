@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { ShowroomExperience } from "@/components/showroom/ShowroomExperience";
 import {
   readSoundPreference,
   shouldSkipEntranceMotion
@@ -148,9 +150,9 @@ export function EntranceExperience() {
   return (
     <main className={`entrance-shell${isEntering ? " is-entering" : ""}${hasEntered ? " has-entered" : ""}`}>
       <header className="entrance-header">
-        <a className="entrance-wordmark" href="/" aria-label="RYTHE ATELIER">
+        <Link className="entrance-wordmark" href="/" aria-label="RYTHE ATELIER">
           RYTHE <span>ATELIER</span>
-        </a>
+        </Link>
         <span className="entrance-edition">DIGITAL ATELIER / 2050</span>
       </header>
 
@@ -189,16 +191,8 @@ export function EntranceExperience() {
           <div className="entrance-door-overlay door-overlay-right" aria-hidden="true" />
         </section>
       ) : (
-        <section className="threshold-arrival" aria-labelledby="arrival-title">
-          <p className="entrance-kicker">THRESHOLD / 001</p>
-          <h1 id="arrival-title">THE SPACE<br /><em>IS YOURS.</em></h1>
-          <p className="entrance-description">
-            You have entered the RYTHE digital atelier. The showroom is being
-            prepared for its next chapter.
-          </p>
-          <div className="arrival-rule" />
-          <p className="entrance-note">THE THRESHOLD IS OPEN — SHOWROOM NAVIGATION FOLLOWS IN PHASE 03.</p>
-        </section>
+        <ShowroomExperience />
+
       )}
 
       <footer className="entrance-footer">

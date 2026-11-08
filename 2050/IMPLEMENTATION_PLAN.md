@@ -1,8 +1,8 @@
 # RYTHE ATELIER — BEYOND RETAIL 2050
 ## Technical audit and implementation plan
 
-**Status:** Phase 1 foundation implemented on `2050/phase-1-foundation`; Phase 2 implementation is underway on `2050/phase-2-cinematic-entrance` following explicit owner authorization.
-**Implementation gate:** Phase 2 only. Phase 3 remains blocked until Phase 2 review and separate owner approval.
+**Status:** Phase 1 and Phase 2 foundations implemented; Phase 3 panorama showroom navigation is underway on `2050/phase-3-panorama-showroom` following explicit owner authorization.
+**Implementation gate:** Phase 3 only. Phase 4 product presentation remains blocked until Phase 3 review and separate owner approval.
 
 ---
 
@@ -282,7 +282,7 @@ Each phase has a review gate. The next phase begins only after the previous phas
 
 **Verification:** first-load, repeat visit, slow connection, touch, keyboard and reduced-motion tests.
 
-**Current implementation record:** Phase 2 is authorized by the owner's explicit instruction on 2026-11-07. Work is isolated on `2050/phase-2-cinematic-entrance`, based on the Phase 1 foundation branch. The current implementation includes the RYTHE entrance screen, interactive door-opening transition, post-entry threshold state, opt-in generated ambient tone, persistent sound preference and reduced-motion bypass. It does not implement the panorama renderer or showroom navigation; those remain Phase 3. Automated verification and owner review are pending.
+**Current implementation record:** Phase 2 was authorized by the owner's explicit instruction on 2026-11-07. Work is isolated on `2050/phase-2-cinematic-entrance`, based on the Phase 1 foundation branch. The current implementation includes the RYTHE entrance screen, interactive door-opening transition, post-entry threshold state, opt-in generated ambient tone, persistent sound preference and reduced-motion bypass. It does not implement the panorama renderer or showroom navigation; those remain Phase 3. Automated verification and owner review were pending when Phase 3 was authorized.
 
 ### Phase 3 — showroom navigation
 - Build panorama renderer and camera controls.
@@ -437,9 +437,9 @@ Owner approval received on 2026-11-07. Phase 1 implementation is isolated on bra
 
 ## 14. Approval gate
 
-**Architecture direction and Phase 1 scope are approved. Phase 2 is explicitly authorized and is being implemented on `2050/phase-2-cinematic-entrance`.**
+**Architecture direction, Phase 1, Phase 2 and Phase 3 are authorized. Phase 3 is being implemented on `2050/phase-3-panorama-showroom`.**
 
-Phase 2 must be verified and presented for owner review before any Phase 3 work. Do not begin panorama rendering, camera controls, hotspots or room navigation without separate explicit approval.
+Phase 3 must be verified and presented for owner review before any Phase 4 product presentation work. Do not begin product inspection, live product data, bag or checkout without separate explicit approval.
 
 ## 15. Phase 2 — detailed implementation record
 
@@ -478,3 +478,46 @@ Create a distinctive, accessible first-contact experience that establishes the R
 
 ### Approval boundary
 After verification, present the Phase 2 result for review. Phase 3 is not authorized until the owner explicitly approves it.
+
+
+## 16. Phase 3 — detailed implementation record
+
+**Phase name:** Showroom navigation  
+**Status:** Authorized by the owner on 2026-11-08; implementation in progress on `2050/phase-3-panorama-showroom`.
+
+### Objective
+Turn the Phase 2 threshold into a navigable spatial prototype with three distinct destinations, intuitive camera controls and accessible alternatives to spatial navigation.
+
+### In scope
+1. Three.js equirectangular panorama renderer on an inward-facing sphere.
+2. Pointer and touch drag camera control with vertical rotation clamping.
+3. Keyboard arrow controls and explicit look-left/look-right/reset controls.
+4. Three destinations: The Threshold, The Gallery and The Archive.
+5. Spherical hotspot fixtures projected into the current view and linked to destinations.
+6. Persistent destination list so navigation does not depend on discovering hotspots.
+7. Responsive controls and WebGL-unavailable fallback messaging/navigation.
+8. A locally generated abstract panorama placeholder for each room until approved 360-degree artwork is supplied.
+9. Unit tests for angular wrapping and hotspot projection.
+
+### Explicitly out of scope
+- Product hotspots/actions, product displays or product inspection.
+- Live product data, commerce, bag or checkout.
+- AVA, AI, voice or character animation.
+- Production panorama commissioning, capture or paid external asset sourcing.
+
+### Phase 3 review checklist
+- [ ] Three destinations can be opened from the persistent destination list.
+- [ ] Drag and touch movement rotate the camera; pitch remains clamped.
+- [ ] Keyboard arrow keys and look/reset controls work.
+- [ ] Hotspots appear only when inside the current view and navigate to the correct destination.
+- [ ] Scene changes reset camera orientation and display the correct destination context.
+- [ ] WebGL failure leaves destination navigation usable.
+- [ ] Mobile and desktop layouts are usable.
+- [ ] Lint, type-check, tests and production build pass.
+- [ ] Production panorama artwork requirements are recorded and approved before public launch.
+
+### Asset limitation
+No approved 360-degree environment images were present in the repository at Phase 3 start. The current panorama is a generated abstract placeholder for interaction and renderer validation only. It must not be presented as final architectural or photographic artwork. The production experience requires three approved equirectangular panoramas, fallback stills and mobile-optimised derivatives.
+
+### Approval boundary
+After verification, present the Phase 3 result for review. Phase 4 is not authorized until the owner explicitly approves product presentation and inspection.
