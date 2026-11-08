@@ -70,13 +70,7 @@ export function ShowroomExperience() {
   }
 
   return (
-    <main className="showroom-shell">
-      <header className="showroom-header">
-        <a className="showroom-wordmark" href="/" aria-label="RYTHE ATELIER home">RYTHE <span>ATELIER</span></a>
-        <div className="showroom-header-meta"><span>BEYOND RETAIL</span><span>2050 / IMMERSIVE STUDY</span></div>
-        <span className="showroom-live-mark"><i /> DIGITAL ATELIER</span>
-      </header>
-
+    <section className="showroom-shell" aria-label="RYTHE immersive showroom">
       <section className="showroom-stage" aria-label="Virtual showroom">
         <PanoramaScene
           key={activeEnvironment.id}
@@ -157,11 +151,7 @@ export function ShowroomExperience() {
         </div>
         <div className="showroom-temporary-note">TEMPORARY PANORAMA STUDY — FINAL 360° ENVIRONMENT ARTWORK PENDING</div>
       </section>
-      <footer className="showroom-footer">
-        <span>© RYTHE ATELIER</span>
-        <span>DESIGNED WITH INTENTION. WORN ON YOUR OWN RHYTHM.</span>
-        <span>01 — 03 / SPATIAL NAVIGATION</span>
-      </footer>
-    </main>
+
+    </section>
   );
 }
