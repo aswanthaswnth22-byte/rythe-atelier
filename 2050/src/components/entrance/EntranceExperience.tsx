@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { ShowroomExperience } from "@/components/showroom/ShowroomExperience";
 import {
   readSoundPreference,
   shouldSkipEntranceMotion
@@ -189,7 +190,9 @@ export function EntranceExperience() {
           <div className="entrance-door-overlay door-overlay-right" aria-hidden="true" />
         </section>
       ) : (
-        <section className="threshold-arrival" aria-labelledby="arrival-title">
+        <ShowroomExperience />
+        {/* Phase 3 replaces the temporary Phase 2 threshold with the navigable showroom. */}
+        <section className="threshold-arrival showroom-phase-transition" aria-labelledby="arrival-title">
           <p className="entrance-kicker">THRESHOLD / 001</p>
           <h1 id="arrival-title">THE SPACE<br /><em>IS YOURS.</em></h1>
           <p className="entrance-description">
@@ -197,7 +200,7 @@ export function EntranceExperience() {
             prepared for its next chapter.
           </p>
           <div className="arrival-rule" />
-          <p className="entrance-note">THE THRESHOLD IS OPEN — SHOWROOM NAVIGATION FOLLOWS IN PHASE 03.</p>
+          <p className="entrance-note">THE THRESHOLD IS OPEN — ENTER THE SPATIAL ATELIER.</p>
         </section>
       )}
 
