@@ -127,7 +127,9 @@ export function PanoramaScene({
           material.needsUpdate = true;
         },
         undefined,
-        () => onError()
+        () => {
+          // Keep the generated placeholder visible if a future panorama asset fails.
+        }
       );
     }
 
