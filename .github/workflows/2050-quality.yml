@@ -2,7 +2,7 @@ name: RYTHE 2050 quality
 
 on:
   push:
-    branches: ["2050/phase-1-foundation", "2050/phase-2-cinematic-entrance"]
+    branches: ["2050/phase-1-foundation", "2050/phase-2-cinematic-entrance", "2050/phase-3-panorama-showroom"]
     paths:
       - "2050/**"
       - ".github/workflows/2050-quality.yml"
