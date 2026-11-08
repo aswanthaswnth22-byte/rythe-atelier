@@ -14,6 +14,12 @@ describe("showroom environment fixtures", () => {
     expect(showroomEnvironments.every((environment) => environment.panorama.src === "")).toBe(true);
   });
 
+  it("provides navigation hotspots that target known destinations", () => {
+    const ids = new Set(showroomEnvironments.map((environment) => environment.id));
+    const destinations = showroomEnvironments.flatMap((environment) => environment.hotspots.map((hotspot) => hotspot.action.type === "navigate" ? hotspot.action.destinationId : null));
+    expect(destinations.every((destination) => destination !== null && ids.has(destination))).toBe(true);
+  });
+
   it("uses unique environment identifiers", () => {
     const ids = showroomEnvironments.map((environment) => environment.id);
     expect(new Set(ids).size).toBe(ids.length);
