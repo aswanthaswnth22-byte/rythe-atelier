@@ -107,7 +107,6 @@ export function PanoramaScene({
 
     const placeholder = new THREE.CanvasTexture(createPlaceholderPanorama(sceneId));
     placeholder.colorSpace = THREE.SRGBColorSpace;
-    placeholder.mapping = THREE.EquirectangularReflectionMapping;
     const material = new THREE.MeshBasicMaterial({ map: placeholder, side: THREE.BackSide });
     const sphere = new THREE.Mesh(new THREE.SphereGeometry(500, 64, 40), material);
     scene.add(sphere);
@@ -123,7 +122,6 @@ export function PanoramaScene({
             return;
           }
           texture.colorSpace = THREE.SRGBColorSpace;
-          texture.mapping = THREE.EquirectangularReflectionMapping;
           loadedTexture = texture;
           material.map = texture;
           material.needsUpdate = true;
