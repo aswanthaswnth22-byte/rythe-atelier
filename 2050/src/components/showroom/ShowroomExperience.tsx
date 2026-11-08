@@ -149,7 +149,7 @@ export function ShowroomExperience() {
             <button type="button" aria-label="Reset view" onClick={() => { setCameraYaw(0); setCameraPitch(0); }}>RESET</button>
           </div>
         </div>
-        <div className="showroom-temporary-note">TEMPORARY PANORAMA STUDY — FINAL 360° ENVIRONMENT ARTWORK PENDING</div>
+        <div className="showroom-temporary-note">RYTHE ATELIER  /  IMMERSIVE SHOWROOM</div>
       </section>
 
     </section>
